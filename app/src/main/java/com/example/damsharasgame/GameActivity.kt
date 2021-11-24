@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.TextView
+import android.widget.Toast
 import com.example.damsharasgame.databinding.ActivityGamrBinding
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -14,16 +15,21 @@ class GameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGamrBinding
     private val movieList: MutableList<String> =
         mutableListOf("PETTA", "MASTER", "VISWASAM", "SOORARAI POOTRU", "KARNAN")
-    private var count = 0
     private var tvTimer: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityGamrBinding.inflate(layoutInflater)
+        val globalVariable: GlobalVariable = GlobalVariable.instance
         super.onCreate(savedInstanceState)
         binding.btnGotIt.setOnClickListener {
             val random: Int = (0 until (movieList.size)).random()
-            count++
-            binding.textViewGuess.text = movieList[random]
-            binding.tvCount.text = count.toString()
+            globalVariable.totalCount++
+            if (globalVariable.totalCount == movieList.size){
+                Toast.makeText(this,"You found all the movies Thank you",Toast.LENGTH_LONG).show()
+            }else{
+                binding.textViewGuess.text = movieList[random]
+                movieList.removeAt(random)
+            }
+            binding.tvCount.text = globalVariable.totalCount.toString()
         }
         binding.btnSkip.setOnClickListener {
             val random: Int = (0 until (movieList.size)).random()
@@ -68,4 +74,11 @@ class GameActivity : AppCompatActivity() {
         countDownTimer.cancel()
     }
 
+}
+class GlobalVariable {
+    var totalCount = 0
+
+    companion object {
+        val instance = GlobalVariable()
+    }
 }
