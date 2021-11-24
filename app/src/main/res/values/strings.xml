@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">DamsharasGame</string>
+    <string name="get_ready_to">Get ready to</string>
+    <string name="guess_the_word">Guess the word!</string>
+    <string name="play">Play</string>
+    <string name="the_word_is">The word is</string>
+    <string name="skip">SKIP</string>
+    <string name="got_it">Got it</string>
+    <string name="your_score_is">Your Score is:</string>
+    <string name="_0">0</string>
+    <string name="petta">PETTA</string>
+    <string name="formatted_time">%02d:%02d</string>
+    <string name="your_total_score_is">Your Total Score is:</string>
+    <string name="play_again">Play Again</string>
+</resources>
